@@ -18,7 +18,7 @@ const Login = (props) => {
         .then(json => {
             props.setIsAuth(true);
             localStorage.setItem('jwt', json.token);
-            history.push("/Tweets");
+            history.push("/");
         })
         .catch(_ => alert('Error trying to authenticate.'));
     };
