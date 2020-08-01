@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 const Tweets = () => {
     const [tweets, setTweets] = useState();
@@ -37,6 +38,9 @@ const Tweets = () => {
     }, [])
 
     return <div>
+        <ul>
+            <li><Link to="/Profile">Profile</Link></li>
+        </ul>
         <form>
             <textarea 
                 placeholder='What are you thinking on?'
