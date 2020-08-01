@@ -1,10 +1,12 @@
-import React from 'react';
-import Login from './components/Login';
+import React, {useState} from 'react';
+import Private from './components/Private';
+import Public from './components/Public';
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false); // Hardcoding false sent us to Login 
   return (
     <div>
-      <Login/>
+      {isAuth ? <Private/> : <Public/>}
     </div>
   );
 }
