@@ -1,9 +1,10 @@
 import React from "react";
 import Login from "./Login";
 
-const Public = () => {
+const Public = (props) => {
     return <div>
-        <Login/>
+        <h1>Login</h1>
+        <Login setIsAuth={props.setIsAuth}/>
     </div>;
 };
 

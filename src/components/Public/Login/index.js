@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleClick = () => {
@@ -12,7 +12,10 @@ const Login = () => {
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => res.json())
-        .then(json => alert(`User ${json.name} was authenticated.`))
+        .then(json => {
+            props.setIsAuth(true);
+            localStorage.setItem('jwt', json.token);
+        })
         .catch(_ => alert('Error trying to authenticate.'));
     };
     return (
@@ -33,7 +36,7 @@ const Login = () => {
                 <p>
                     <button 
                         onClick={handleClick}
-                        type="button">Login</button></p>
+                        type="button">Sign in</button></p>
             </form>
         </div>
     )
