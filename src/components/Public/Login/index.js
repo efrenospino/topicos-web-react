@@ -5,7 +5,8 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
     const handleClick = () => {
         const user = {username, password};
-        const url = 'http://localhost:80/api/users/login';
+        const host = process.env.REACT_APP_API_URL;
+        const url = `${host}/users/login`;
         fetch(url, {
             method: 'POST', 
             body: JSON.stringify(user),
