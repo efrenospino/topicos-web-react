@@ -1,4 +1,5 @@
 import React from "react";
+import Tweets from "./Tweets";
 
 const Private = (props) => {
     return <div>
@@ -9,6 +10,7 @@ const Private = (props) => {
                     localStorage.removeItem('jwt');
                 }}
                 type="button">Sign out</button></p>
+        <Tweets/>
     </div>;
 };
 
