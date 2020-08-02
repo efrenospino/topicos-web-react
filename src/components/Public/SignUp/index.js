@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 
-    const history = useHistory();
-    
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [age, setAge] = useState('');
@@ -12,7 +10,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-    const handleClick = (props) => {
+    const handleClick = () => {
         
         if (password !== passwordConfirmation) {
             alert('Password do not match confirmation');
