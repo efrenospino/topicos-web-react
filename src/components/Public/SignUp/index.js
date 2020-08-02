@@ -1,13 +1,35 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const SignUp = () => {
+
+    const history = useHistory();
+    
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
+    const [age, setAge] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passConfirmation, setPassConfirmation] = useState('');
-    const handleClick = () => {
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+    const handleClick = (props) => {
         
+        if (password !== passwordConfirmation) {
+            alert('Password do not match confirmation');
+            return
+        }
+
+        const user = {name, username, age, email, password};
+        const host = process.env.REACT_APP_API_URL;
+        const url = `${host}/users`;
+
+        fetch(url, {
+            method: 'POST', 
+            body: JSON.stringify(user),
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(_ => alert('User created succesfully.'))
+        .catch(_ => alert('Error trying to register.'));
     };
     return (
         <div>
@@ -25,6 +47,18 @@ const SignUp = () => {
                         name="username" 
                         value={username} 
                         onChange={(e) => {setUsername(e.target.value)}}/></p>
+                <p><label>Age</label><br/>
+                    <input 
+                        type="number" 
+                        name="age" 
+                        value={age} 
+                        onChange={(e) => {setAge(e.target.value)}}/></p>
+                <p><label>Email</label><br/>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        value={email} 
+                        onChange={(e) => {setEmail(e.target.value)}}/></p>
                 <p><label>Password</label><br/>
                     <input 
                         type="password" 
@@ -35,8 +69,8 @@ const SignUp = () => {
                     <input 
                         type="password" 
                         name="passwordConfirmation" 
-                        value={passConfirmation} 
-                        onChange={(e) => {setPassConfirmation(e.target.value)}}/></p>
+                        value={passwordConfirmation} 
+                        onChange={(e) => {setPasswordConfirmation(e.target.value)}}/></p>
                 <p>
                     <button 
                         onClick={handleClick}
