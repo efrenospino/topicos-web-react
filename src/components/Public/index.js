@@ -7,6 +7,7 @@ import { Switch, Route } from "react-router-dom";
 
 const Public = (props) => {
     return <div>
+        <h1>Publix</h1>
         <Switch>
             <Route exact path="/"><Home/></Route>
             <Route exact path="/SignIn">

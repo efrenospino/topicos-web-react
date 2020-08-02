@@ -4,19 +4,23 @@ import Profile from "./Profile";
 import { Switch, Route, useHistory } from "react-router-dom"
 
 const Private = (props) => {
+    
     const history = useHistory();
+    
+    const signOut = () => {
+        props.setIsAuth(false);
+        localStorage.removeItem('jwt');
+        history.push("/");
+    }
+
     return <div>
         <h1>Private</h1>
         <p><button 
-                onClick={() => {
-                    props.setIsAuth(false);
-                    localStorage.removeItem('jwt');
-                    history.push("/");
-                }}
+                onClick={() => signOut()}
                 type="button">Sign out</button></p>
         <Switch>
-            <Route exact path="/Profile"><Profile/></Route>
-            <Route exact path="/Tweets"><Tweets/></Route>
+            <Route exact path="/"><Tweets/></Route>
+            <Route exact path="/Profile/:username?"><Profile/></Route>
         </Switch>
     </div>;
 };
