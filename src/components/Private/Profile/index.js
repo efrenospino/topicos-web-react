@@ -10,11 +10,15 @@ const Profile = () => {
     const getTweets = () => {
         const host = process.env.REACT_APP_API_URL;
         const url = `${host}/users/${params.userId}/tweets`;
-        fetch(url)
-            .then(res => res.json())
-            .then(json => {
-                setTweets(json)
-            });
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': localStorage.getItem('jwt')
+            }
+        }).then(res => res.json())
+        .then(json => {
+            setTweets(json)
+        });
     }
     
     useEffect(() => {
