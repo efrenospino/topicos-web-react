@@ -69,6 +69,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Contributors
 
-Efren Ospino [@efrenospino](https://github.com/efrenospino)
-Daniel Gómez [@DanielGomezR](https://github.com/DanielGomezR)
-Pamela Quevedo [@pamelaq](https://github.com/pamelaq)
+- Efren Ospino [@efrenospino](https://github.com/efrenospino)
+- Daniel Gómez [@DanielGomezR](https://github.com/DanielGomezR)
+- Pamela Quevedo [@pamelaq](https://github.com/pamelaq)
