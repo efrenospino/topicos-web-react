@@ -20,7 +20,7 @@ const Private = (props) => {
                 type="button">Sign out</button></p>
         <Switch>
             <Route exact path="/"><Tweets/></Route>
-            <Route exact path="/Profile/:username?"><Profile/></Route>
+            <Route exact path="/Profile/:username?/:userId?"><Profile/></Route>
         </Switch>
     </div>;
 };
