@@ -13,7 +13,9 @@ const Public = (props) => {
             <Route exact path="/SignIn">
                 <Login setIsAuth={props.setIsAuth}/>
             </Route>
-            <Route exact path="/SignUp"><SignUp/></Route>
+            <Route exact path="/SignUp">
+                <SignUp setIsAuth={props.setIsAuth}/>
+            </Route>
             <Route exact path="/PasswordRecovery"><PasswordRecovery/></Route>
         </Switch>
     </div>;

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = (props) => {
+
+    const history = useHistory();
 
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
@@ -10,7 +12,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-    const handleClick = () => {
+    const handleClick = async() => {
         
         if (password !== passwordConfirmation) {
             alert('Password do not match confirmation');
@@ -21,13 +23,34 @@ const SignUp = () => {
         const host = process.env.REACT_APP_API_URL;
         const url = `${host}/users`;
 
-        fetch(url, {
-            method: 'POST', 
-            body: JSON.stringify(user),
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then(_ => alert('User created succesfully.'))
-        .catch(_ => alert('Error trying to register.'));
+        try {
+            const signUpResponse = await fetch(url, {
+                method: 'POST', 
+                body: JSON.stringify(user),
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            const signUpData = await signUpResponse.json();
+            if (signUpData !== null) {
+                const loginURL = `${host}/users/login`;
+                const loginResponse = await fetch(loginURL, {
+                    method: 'POST', 
+                    body: JSON.stringify({username, password}),
+                    headers: {'Content-Type': 'application/json'}
+                });
+            
+                const loginData = await loginResponse.json();
+                props.setIsAuth(true);
+                localStorage.setItem('jwt', loginData.token);
+                history.push("/");
+
+                alert('User created succesfully.');
+            }
+            
+        } catch (_) {
+            alert('Error trying to authenticate.');
+        }
+    
     };
     return (
         <div>
